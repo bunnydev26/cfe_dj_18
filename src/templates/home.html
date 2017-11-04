@@ -6,10 +6,10 @@
 <body>
 	This is Home Page HTML :D
 	<h1>{{ title }}</h1>
-	{{ user }}
-	{{ user.is_authenticated }}
-	<br/>
-	{{ request.user | capitalize }}
-	{{ request.user.is_authenticated }}
+
+	<form method="post" action=""> {% csrf_token %}
+		{{ forms.as_p }}
+		<input type="submit" name="Sign Up" />
+	</form>
 </body>
 </html>
