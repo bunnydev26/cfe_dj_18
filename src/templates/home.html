@@ -5,5 +5,11 @@
 </head>
 <body>
 	This is Home Page HTML :D
+	<h1>{{ title }}</h1>
+
+	<form method="post" action=""> {% csrf_token %}
+		{{ forms.as_p }}
+		<input type="submit" name="Sign Up" />
+	</form>
 </body>
 </html>

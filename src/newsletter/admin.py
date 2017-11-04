@@ -5,8 +5,8 @@ from .forms import SignUpForm
 # Register your models here.
 
 class SignUpAdmin(admin.ModelAdmin):
-	list_display = ['__str__', 'fullname', 'timestamp', 'updated']
-	search_fields = ['fullname',]
+	list_display = ['__str__', 'full_name', 'timestamp', 'updated']
+	search_fields = ['full_name',]
 	form = SignUpForm
 #	class Meta:
 #		model=SignUp
