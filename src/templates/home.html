@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-	This is Home Page HTML :D
-	<h1>{{ title }}</h1>
+{% extends 'base.html' %}
 
+{% block head_title %}Home | {{ block.super }}{% endblock %}
+{% block jumbotron %}
+	{{ block.super }}
+	hello
+{% endblock %}
+
+{% block content %}
 	<form method="post" action=""> {% csrf_token %}
 		{{ forms.as_p }}
 		<input type="submit" name="Sign Up" />
 	</form>
-</body>
-</html>
+{% endblock %}
