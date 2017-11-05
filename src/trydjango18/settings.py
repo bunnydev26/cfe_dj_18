@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -26,6 +27,36 @@ SECRET_KEY = '=ai-5(5#qq$zg$eqhba%mc7r_t&-!3ak=wx44ou&shd*g!$(4e'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+"""
+If you are using gmail,
+you will need to unlock captcha
+to enable Django send email for you
+https://accounts.google.com/DisplayUnlockCaptcha
+https://myaccount.google.com/lesssecureapps?pli=1
+"""
+"""
+Loading the credentials
+Provide a path to folder where configurations.json exists 
+for it to work as expected
+{
+    "email": "test@gmail.com"
+    "password": "test_pass", 
+}
+
+"""
+CONFIGURATION = {}
+CREDENTIALS_PATH = "/home/amit/credentials/configurations.json"
+if os.path.exists(CREDENTIALS_PATH):
+    file_obj = open(CREDENTIALS_PATH)
+    CONFIGURATION = json.loads(file_obj.read())
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = CONFIGURATION.get('email')
+EMAIL_HOST_PASSWORD = CONFIGURATION.get('password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Application definition
@@ -101,3 +132,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static_in_pro", "static_root")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static_in_pro", "our_static"),
+)
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_in_pro", "media_root")
